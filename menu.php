@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html><?php session_start();?>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("pobrane.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="index.php" class="w3-button w3-block w3-black">O NAS</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="kontakt.php" class="w3-button w3-block w3-black">KONTAKT</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="menu.php" class="w3-button w3-block w3-black">MENU</a>
+    </div>
+    <?php
+     if(isset($_SESSION['user_id']))
+      echo '<div class="w3-col s3">
+      <a href="wyloguj.php" class="w3-button w3-block w3-black">Wyloguj</a>
+    </div>';
+    else
+      echo '<div class="w3-col s3">
+      <a href="zaloguj.php" class="w3-button w3-block w3-black">ZALOGUJ</a>
+    </div>';
+    ?>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Otwarte od 7:00 do 20:00</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">KUCHNIA<br>JAPOŃSKA</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">adddddddreasss</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+
+
+<!-- Menu Container -->
+<div class="w3-container" id="menu">
+  <div class="w3-content" style="max-width:700px">
+ 
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">MENU</span></h5>
+  
+    <div class="w3-row w3-center w3-card w3-padding">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+        <div class="w3-col s6 tablink">Eat</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">Drink</div>
+      </a>
+    </div>
+
+    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+      <?php
+        $db = mysqli_connect('localhost', 'root', '', 'kawiarnia', 3306);	
+        if(!$db)
+          die("Błąd Połączenia z bazą danych" . mysqli_connect_error());
+
+          $sql = mysqli_query($db,"SELECT * FROM menu");
+            while($row = mysqli_fetch_array($sql, MYSQLI_ASSOC))
+            {
+                echo '<h5>'.$row['title'].'</h5>';
+                echo '<p>'.$row['content'].'</p>';
+
+            }
+      
+      
+      ?>
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p>
+    </div>
+
+    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+      <h5>tttryyyyy</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>tttryyyyy</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>tttryyyyy</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p><br>
+    
+      <h5>tttryyyyy</h5>
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non ante id enim ultricies interdum.</p>
+    </div>  
+    <img src="pobrane.jpg" style="width:100%;max-width:1000px;margin-top:32px;">
+  </div>
+</div>
+
+
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
